@@ -9,5 +9,6 @@ class PagesController < ApplicationController
     def dashboard
         # if not logged in redirect to root path
         redirect_to new_session_path unless authenticated?
+        @books = Book.all
     end
 end

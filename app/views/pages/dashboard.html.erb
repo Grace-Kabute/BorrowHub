@@ -1,3 +1,7 @@
 <div class="container-md">
 <h1>dashboard</h1>
+<p>
+welcome, <%= Current.user.email_address %>
+</p>
+<%= button_to "Logout", session_path, method: :delete %>
 </div>

@@ -1,7 +1,25 @@
 <div class="container-md">
-<h1>dashboard</h1>
+<h1>BorrowHUb</h1>
 <p>
 welcome, <%= Current.user.email_address %>
 </p>
+<h1>Explore</h1>
+
+<div class="books-container">
+  <% @books.each do |book| %>
+    <div class="book-item">
+      <h2><%= book.title %></h2>
+      <img src="<%= book.cover_image %>" alt="<%= book.title %> Cover" style="width: 150px; height: 200px;">
+      <p>by <%= book.author %></p>
+      <p>ISBN: <%= book.isbn %></p>
+      
+      <% if book.available? %>
+      <%= link_to "View Details", book_path(book), class: "btn btn-primary" %>
+      <% else %>
+        <button disabled>Borrowed</button>
+      <% end %>
+    </div>
+  <% end %>
+</div>
 <%= button_to "Logout", session_path, method: :delete %>
 </div>

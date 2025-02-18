@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "signup", to: "registrations#new", as: :signup
+  post "signup", to: "registrations#create", as: :registrations
   resource :session
   resources :passwords, param: :token
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

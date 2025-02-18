@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
+  get "profiles/show"
+  get "profiles/edit"
+  get "profiles/update"
   get "books/index"
   get "signup", to: "registrations#new", as: :signup
   post "signup", to: "registrations#create", as: :registrations
   resource :session
   resources :passwords, param: :token
   resources :books, only: [:show]
+  resources :profiles, only: [:show, :edit, :update]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

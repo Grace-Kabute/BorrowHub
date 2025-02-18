@@ -1,8 +1,33 @@
 <div class="container-md">
 <h1>BorrowHUb</h1>
-<p>
-welcome, <%= Current.user.email_address %>
-</p>
+
+<div class="dropdown">
+  <a href="#" class="dropdown-toggle" id="userDropdown">
+    <%= Current.user.email_address %>
+  </a>
+  <div class="dropdown-menu" id="dropdownMenu">
+    <% if Current.user.profile.present? %>
+      <%= link_to "my Profile", profile_path(Current.user.profile), class: "dropdown-item" %>
+    <% else %>
+      <p class="dropdown-item text-muted">Profile not set</p>
+    <% end %>
+    <%= button_to "Logout", method: :delete, class: "dropdown-item" %>
+  </div>
+</div>
+
+<style>
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+</style>
+
 <h1>Explore</h1>
 
 <div class="books-container">

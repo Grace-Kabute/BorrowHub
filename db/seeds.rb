@@ -21,19 +21,3 @@ Book.create([
   { cover_image: "http://placekitten.com/200/300", title: "The Great Gatsby", author: "F. Scott Fitzgerald", isbn: "3467567890", genre: "Fiction", description: "A portrayal of the Jazz Age in all its decadence and excess, seen through the eyes of narrator Nick Carraway.", published_year: 1925 },
   { cover_image: "http://placekitten.com/200/300", title: "Moby Dick", author: "Herman Melville", isbn: "1234532860", genre: "Adventure", description: "The story of Captain Ahab’s obsessive quest to kill the white whale, Moby Dick.", published_year: 1851 }
 ])
-
-# Book.create!(
-#   title: "The Great Gatsby",
-#   author: "F. Scott Fitzgerald",
-#   isbn: "6253467890",
-#   cover_image: "http://placekitten.com/200/300", # Example placeholder image
-#   available: true
-# )
-
-# Book.create!(
-#   title: "1984",
-#   author: "George Orwell",
-#   isbn: "0098754321",
-#   cover_image: "http://placekitten.com/200/300", # Example placeholder image
-#   available: true
-# )

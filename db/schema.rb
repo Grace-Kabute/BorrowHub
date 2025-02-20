@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_18_185756) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_19_215209) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -52,6 +52,18 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_18_185756) do
     t.integer "published_year"
   end
 
+  create_table "borrowings", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "book_id", null: false
+    t.datetime "borrowed_at"
+    t.datetime "due_date"
+    t.datetime "returned_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_borrowings_on_book_id"
+    t.index ["user_id"], name: "index_borrowings_on_user_id"
+  end
+
   create_table "profiles", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "first_name"
@@ -82,6 +94,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_18_185756) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "borrowings", "books"
+  add_foreign_key "borrowings", "users"
   add_foreign_key "profiles", "users"
   add_foreign_key "sessions", "users"
 end

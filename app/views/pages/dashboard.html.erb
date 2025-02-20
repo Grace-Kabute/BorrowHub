@@ -1,9 +1,14 @@
+<!DOCTYPE>
+<head>
+<%= stylesheet_link_tag "dashboard.css" %>
+</head>
+<body>
 <div class="container-md">
-<h1>BorrowHUb</h1>
-
+<div class="navigation">
+<h2>BorrowHUb</h2>
 <div class="dropdown">
-  <a href="#" class="dropdown-toggle" id="userDropdown">
-    <%= Current.user.email_address %>
+  <a href="#">
+  Welcome, <%= Current.user.email_address %>
   </a>
   <div class="dropdown-menu" id="dropdownMenu">
     <% if Current.user.profile.present? %>
@@ -11,8 +16,12 @@
     <% else %>
       <p class="dropdown-item text-muted">Profile not set</p>
     <% end %>
-    <%= button_to "Logout", method: :delete, class: "dropdown-item" %>
+    <%= button_to "Logout", session_path, method: :delete %>
   </div>
+  </div>
+</div>
+<div class="quote-container">
+  <p><%= @random_quote %></p>
 </div>
 
 <style>
@@ -28,23 +37,23 @@
   }
 </style>
 
-<h1>Explore</h1>
+<h6>Explore</h6>
 
 <div class="books-container">
   <% @books.each do |book| %>
     <div class="book-item">
-      <h2><%= book.title %></h2>
-      <img src="<%= book.cover_image %>" alt="<%= book.title %> Cover" style="width: 150px; height: 200px;">
+    <img src="<%= book.cover_image %>" alt="<%= book.title %> Cover" style="width: 150px; height: 200px;">
+      <h5><%= book.title %></h5>
       <p>by <%= book.author %></p>
       <p>ISBN: <%= book.isbn %></p>
       
       <% if book.available? %>
-      <%= link_to "View Details", book_path(book), class: "btn btn-primary" %>
+      <%= link_to "View Details", book_path(book) %>
       <% else %>
         <button disabled>Borrowed</button>
       <% end %>
     </div>
   <% end %>
 </div>
-<%= button_to "Logout", session_path, method: :delete %>
 </div>
+</body>

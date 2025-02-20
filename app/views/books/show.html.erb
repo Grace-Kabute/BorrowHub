@@ -1,9 +1,30 @@
-<h1><%= @book.title %></h1>
-<img src="<%= @book.cover_image %>" alt="<%= @book.title %> Cover" style="width: 200px; height: 300px;">
-<p><strong>Author:</strong> <%= @book.author %></p>
-<p><strong>ISBN:</strong> <%= @book.isbn %></p>
-<p><strong>Genre:</strong> <%= @book.genre %></p>
-<p><strong>Description:</strong> <%= @book.description %></p>
-<p><strong>Published Year:</strong> <%= @book.published_year %></p>
-
-<%= link_to "Back to Books", root_path, class: "btn btn-secondary" %>
+<!DOCTYPE>
+<head>
+<%= stylesheet_link_tag "books.css" %>
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col image">
+    <img src="<%= @book.cover_image %>" alt="<%= @book.title %> Cover" style="width: 200px; height: 300px; margin-top: 32px">
+    </div>
+    <div class="col content">
+    <h1><%= @book.title %></h1>
+    <p><strong>Author:</strong> <%= @book.author %></p>
+    <p><strong>ISBN:</strong> <%= @book.isbn %></p>
+    <p><strong>Genre:</strong> <%= @book.genre %></p>
+    <p><strong>Description:</strong> <%= @book.description %></p>
+    <p><strong>Published Year:</strong> <%= @book.published_year %></p>
+<%= link_to "Back to Books", root_path%>
+<%= form_with url: borrow_book_path(@book), method: :post do %>
+    <label for="library_code">Enter email address:</label>
+    <%= text_field_tag :email_address, nil, required: true %>
+    <%= submit_tag "Borrow" %>
+  <% end %>
+  <% if @book.borrowings.where(returned_at: nil).exists? %>
+  <%= button_to "Return Book", return_book_path(@book), method: :post %>
+<% end %>
+</div>
+  </div>
+</div>
+<body>
